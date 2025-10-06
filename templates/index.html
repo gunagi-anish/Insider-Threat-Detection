@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insider Threat Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .upload-area {
+            border: 3px dashed #3498db;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #2980b9;
+            background: #e3f2fd;
+        }
+        
+        .upload-area.dragover {
+            border-color: #27ae60;
+            background: #e8f5e8;
+        }
+        
+        .upload-icon {
+            font-size: 3em;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .btn-custom {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .results-section {
+            display: none;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .anomaly-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .anomaly-score {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #e74c3c;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .plot-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .plot-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .alert-custom {
+            border-radius: 10px;
+            border: none;
+            padding: 15px 20px;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .table th {
+            background: #f8f9fa;
+            border-top: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-container">
+            <div class="header d-flex justify-content-between align-items-start">
+                <div>
+                    <h1><i class="fas fa-shield-alt"></i> Insider Threat Detection System</h1>
+                    <p>Upload your user behavior data to detect potential insider threats using advanced machine learning</p>
+                </div>
+                <div class="text-end">
+                    {% if username %}
+                    <div class="mb-2">Signed in as <strong>{{ username }}</strong></div>
+                    <a href="{{ url_for('logout') }}" class="btn btn-sm btn-outline-danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="upload-section">
+                <!-- Upload Mode Selection -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><i class="fas fa-cog"></i> Upload Mode</h5>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uploadMode" id="singleMode" value="single" checked>
+                                    <label class="form-check-label" for="singleMode">
+                                        <strong>Single File</strong> - Combined CSV with all activities
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uploadMode" id="multipleMode" value="multiple">
+                                    <label class="form-check-label" for="multipleMode">
+                                        <strong>Multiple Files</strong> - Separate CSV files for each activity
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Single File Upload -->
+                <div id="singleFileUpload" class="upload-mode">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h4>Drop your combined CSV file here or click to browse</h4>
+                        <p class="text-muted"><strong>Required:</strong> user, date<br>
+                        <strong>Optional:</strong> logon, file, email, device, http (missing columns will use default value 0)<br>
+                        <strong>Date formats supported:</strong> YYYY-MM-DD, MM/DD/YYYY, DD/MM/YYYY, YYYYMMDD, timestamps</p>
+                        <input type="file" id="fileInput" accept=".csv" style="display: none;">
+                        <button class="btn btn-custom" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-file-csv"></i> Choose File
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Multiple Files Upload -->
+                <div id="multipleFileUpload" class="upload-mode" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-sign-in-alt"></i> Logon Activity</h6>
+                                    <input type="file" id="logonFile" accept=".csv" class="form-control">
+                                    <small class="text-muted"><strong>Required:</strong> user, date<br><strong>Optional:</strong> logon<br><strong>Date formats:</strong> Any standard format</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-file"></i> File Activity</h6>
+                                    <input type="file" id="fileFile" accept=".csv" class="form-control">
+                                    <small class="text-muted"><strong>Required:</strong> user, date<br><strong>Optional:</strong> file<br><strong>Date formats:</strong> Any standard format</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-envelope"></i> Email Activity</h6>
+                                    <input type="file" id="emailFile" accept=".csv" class="form-control">
+                                    <small class="text-muted"><strong>Required:</strong> user, date<br><strong>Optional:</strong> email<br><strong>Date formats:</strong> Any standard format</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-laptop"></i> Device Activity</h6>
+                                    <input type="file" id="deviceFile" accept=".csv" class="form-control">
+                                    <small class="text-muted"><strong>Required:</strong> user, date<br><strong>Optional:</strong> device<br><strong>Date formats:</strong> Any standard format</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6><i class="fas fa-globe"></i> HTTP Activity</h6>
+                                    <input type="file" id="httpFile" accept=".csv" class="form-control">
+                                    <small class="text-muted"><strong>Required:</strong> user, date<br><strong>Optional:</strong> http<br><strong>Date formats:</strong> Any standard format</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-success btn-custom" onclick="processMultipleFiles()">
+                            <i class="fas fa-play"></i> Process Files
+                        </button>
+                        <button class="btn btn-info btn-custom" onclick="createSampleFiles()">
+                            <i class="fas fa-download"></i> Create Sample Files
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <h4>Processing your data...</h4>
+                <p id="loadingMessage">Training advanced anomaly detection models and analyzing patterns</p>
+                <div class="progress mt-3" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                         role="progressbar" style="width: 0%" id="progressBar">
+                        <span id="progressText">0%</span>
+                    </div>
+                </div>
+                <small class="text-muted mt-2" id="fileInfo"></small>
+            </div>
+            
+            <div class="results-section" id="resultsSection">
+                <div class="alert alert-success alert-custom">
+                    <i class="fas fa-check-circle"></i> Analysis completed successfully!
+                </div>
+                
+                <div class="row" id="summaryStats">
+                    <!-- Summary statistics will be populated here -->
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="table-container">
+                            <h5><i class="fas fa-exclamation-triangle"></i> Top Anomalous Users</h5>
+                            <div id="topAnomalies">
+                                <!-- Top anomalies will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="table-container">
+                            <h5><i class="fas fa-download"></i> Actions</h5>
+                            <button class="btn btn-success btn-custom" onclick="downloadResults()">
+                                <i class="fas fa-download"></i> Download Results
+                            </button>
+                            <button class="btn btn-info btn-custom" onclick="viewDetailedResults()">
+                                <i class="fas fa-table"></i> View All Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="visualizations">
+                    <!-- Visualizations will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Detailed Results Modal -->
+    <div class="modal fade" id="resultsModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-table"></i> Detailed Results</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="resultsTable">
+                            <!-- Results table will be populated here -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentResults = null;
+        
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const loading = document.getElementById('loading');
+        const resultsSection = document.getElementById('resultsSection');
+        
+        // Upload mode handling
+        document.querySelectorAll('input[name="uploadMode"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const singleUpload = document.getElementById('singleFileUpload');
+                const multipleUpload = document.getElementById('multipleFileUpload');
+                
+                if (this.value === 'single') {
+                    singleUpload.style.display = 'block';
+                    multipleUpload.style.display = 'none';
+                } else {
+                    singleUpload.style.display = 'none';
+                    multipleUpload.style.display = 'block';
+                }
+            });
+        });
+        
+        // Drag and drop functionality for single file
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleSingleFile(files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleSingleFile(e.target.files[0]);
+            }
+        });
+        
+        function handleSingleFile(file) {
+            if (!file.name.toLowerCase().endsWith('.csv')) {
+                alert('Please upload a CSV file.');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_mode', 'single');
+            
+            processFiles(formData);
+        }
+        
+        function processMultipleFiles() {
+            const fileTypes = ['logon', 'file', 'email', 'device', 'http'];
+            const formData = new FormData();
+            formData.append('upload_mode', 'multiple');
+            
+            let hasFiles = false;
+            fileTypes.forEach(fileType => {
+                const fileInput = document.getElementById(fileType + 'File');
+                if (fileInput.files.length > 0) {
+                    formData.append(fileType, fileInput.files[0]);
+                    hasFiles = true;
+                }
+            });
+            
+            if (!hasFiles) {
+                alert('Please upload at least one file.');
+                return;
+            }
+            
+            processFiles(formData);
+        }
+        
+        function processFiles(formData) {
+            // Show loading with progress
+            loading.style.display = 'block';
+            resultsSection.style.display = 'none';
+            
+            // Update loading message for large files
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            let totalSize = 0;
+            let fileCount = 0;
+            
+            fileInputs.forEach(input => {
+                if (input.files.length > 0) {
+                    for (let file of input.files) {
+                        totalSize += file.size;
+                        fileCount++;
+                    }
+                }
+            });
+            
+            const totalSizeGB = totalSize / (1024 * 1024 * 1024);
+            if (totalSizeGB > 1) {
+                document.getElementById('loadingMessage').textContent = 
+                    `Processing large file(s) (${totalSizeGB.toFixed(2)} GB). This may take several minutes...`;
+                document.getElementById('fileInfo').textContent = 
+                    `Large file processing uses chunked reading to manage memory efficiently.`;
+            }
+            
+            // Simulate progress for large files
+            if (totalSizeGB > 0.1) {
+                simulateProgress();
+            }
+            
+            // Upload and process
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none';
+                
+                if (data.success) {
+                    displayResults(data);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                alert('Error processing files: ' + error.message);
+            });
+        }
+        
+        function simulateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress > 90) progress = 90; // Don't complete until actual processing is done
+                
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+                
+                if (progress >= 90) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+        
+        function createSampleFiles() {
+            fetch('/create_sample_files')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Sample files created successfully! Check the sample_data folder.');
+                } else {
+                    alert('Error creating sample files: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error creating sample files: ' + error.message);
+            });
+        }
+        
+        function displayResults(data) {
+            currentResults = data;
+            
+            // Display summary statistics
+            const summaryHtml = `
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">${data.summary.total_users}</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">${data.summary.anomalies_detected}</div>
+                        <div class="stat-label">Anomalies Detected</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">${data.summary.anomaly_rate}%</div>
+                        <div class="stat-label">Anomaly Rate</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">${data.summary.threshold}</div>
+                        <div class="stat-label">Threshold</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('summaryStats').innerHTML = summaryHtml;
+            
+            // Display top anomalies
+            const anomaliesHtml = data.top_anomalies.map(user => `
+                <div class="anomaly-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>${user.user}</strong>
+                        </div>
+                        <div class="anomaly-score">
+                            ${user.advanced_score.toFixed(3)}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('topAnomalies').innerHTML = anomaliesHtml;
+            
+            // Display visualizations
+            const plotsHtml = Object.entries(data.plots).map(([key, filename]) => `
+                <div class="plot-container">
+                    <h5>${key.replace('_', ' ').toUpperCase()}</h5>
+                    <img src="/static/${filename}" alt="${key}">
+                </div>
+            `).join('');
+            document.getElementById('visualizations').innerHTML = plotsHtml;
+            
+            // Show results section
+            resultsSection.style.display = 'block';
+        }
+        
+        function downloadResults() {
+            window.open('/download_results', '_blank');
+        }
+        
+        function viewDetailedResults() {
+            if (!currentResults) return;
+            
+            // Fetch detailed results
+            fetch('/results')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Populate table
+                    const table = document.getElementById('resultsTable');
+                    const headers = data.columns.map(col => `<th>${col}</th>`).join('');
+                    const rows = data.data.map(row => 
+                        `<tr>${data.columns.map(col => `<td>${row[col]}</td>`).join('')}</tr>`
+                    ).join('');
+                    
+                    table.innerHTML = `
+                        <thead><tr>${headers}</tr></thead>
+                        <tbody>${rows}</tbody>
+                    `;
+                    
+                    // Show modal
+                    new bootstrap.Modal(document.getElementById('resultsModal')).show();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

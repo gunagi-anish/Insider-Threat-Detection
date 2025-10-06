@@ -61,3 +61,5 @@ final_features = all_features.groupby('user').sum().reset_index()
 print("Saving features...")
 final_features.to_csv('data/processed/features.csv', index=False)
 print("Features extracted and saved to data/processed/features.csv")
+
+

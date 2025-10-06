@@ -1,12 +1,22 @@
 Loading features...
+Initializing Advanced Anomaly Detector...
+Training Advanced Anomaly Detector...
+Computing advanced anomaly scores...
+Running legacy LAN detector for comparison...
 Total users analyzed: 1000
 Number of suspicious users detected: 50
 
-All Suspicious Users (LAN):
+Performance Comparison:
+Legacy LAN AUC: 0.9771
+Advanced Model AUC: 1.0000
+Improvement: 2.34%
+
+All Suspicious Users (Advanced Model):
 ================================================================================
 User: AJF0370
   Rank: 1 of 1000 (Anomaly Score Percentile: 0.00%)
-  LAN Anomaly Score: 1.000
+  Advanced Anomaly Score: 0.857
+  Legacy LAN Score: 1.000
   Feature values:
     logon: 77.6824350929002
     file: 147.963052424666
@@ -20,9 +30,27 @@ User: AJF0370
     device: 6.30
     http: 0.70
 --------------------------------------------------------------------------------
-User: IBB0359
+User: EAH0466
   Rank: 2 of 1000 (Anomaly Score Percentile: 0.10%)
-  LAN Anomaly Score: 0.863
+  Advanced Anomaly Score: 0.622
+  Legacy LAN Score: 0.162
+  Feature values:
+    logon: 2.9714285714285715
+    file: 25.571428571428573
+    email: 3.0
+    device: 2.142857142857143
+    http: 196.5
+  Feature z-scores:
+    logon: -1.79
+    file: 0.69
+    email: -1.44
+    device: -0.26
+    http: -1.39
+--------------------------------------------------------------------------------
+User: IBB0359
+  Rank: 3 of 1000 (Anomaly Score Percentile: 0.20%)
+  Advanced Anomaly Score: 0.565
+  Legacy LAN Score: 0.863
   Feature values:
     logon: 78.1528129399143
     file: 48.70761739713717
@@ -36,457 +64,10 @@ User: IBB0359
     device: 6.24
     http: 0.62
 --------------------------------------------------------------------------------
-User: MPM0220
-  Rank: 3 of 1000 (Anomaly Score Percentile: 0.20%)
-  LAN Anomaly Score: 0.627
-  Feature values:
-    logon: 54.25871844244759
-    file: 92.03228905597328
-    email: 174.4102564102564
-    device: 68.58304093567251
-    http: 12871.666666666668
-  Feature z-scores:
-    logon: 3.17
-    file: 3.46
-    email: -0.16
-    device: 3.71
-    http: -0.10
---------------------------------------------------------------------------------
-User: MSS0001
-  Rank: 4 of 1000 (Anomaly Score Percentile: 0.30%)
-  LAN Anomaly Score: 0.605
-  Feature values:
-    logon: 24.859160432416697
-    file: 0.0
-    email: 903.7549450549452
-    device: 0.0
-    http: 74846.0
-  Feature z-scores:
-    logon: 0.32
-    file: -0.38
-    email: 5.30
-    device: -0.39
-    http: 6.20
---------------------------------------------------------------------------------
-User: HCS0003
-  Rank: 5 of 1000 (Anomaly Score Percentile: 0.40%)
-  LAN Anomaly Score: 0.532
-  Feature values:
-    logon: 17.799137383797202
-    file: 44.99262483016402
-    email: 682.0886446886448
-    device: 28.41063639542832
-    http: 48643.5
-  Feature z-scores:
-    logon: -0.36
-    file: 1.50
-    email: 3.64
-    device: 1.31
-    http: 3.54
---------------------------------------------------------------------------------
-User: HDS0367
-  Rank: 6 of 1000 (Anomaly Score Percentile: 0.50%)
-  LAN Anomaly Score: 0.429
-  Feature values:
-    logon: 77.58991077956418
-    file: 53.44134973008212
-    email: 274.18589743589746
-    device: 40.7712253325056
-    http: 20256.166666666668
-  Feature z-scores:
-    logon: 5.42
-    file: 1.85
-    email: 0.59
-    device: 2.05
-    http: 0.65
---------------------------------------------------------------------------------
-User: EIS0041
-  Rank: 7 of 1000 (Anomaly Score Percentile: 0.60%)
-  LAN Anomaly Score: 0.423
-  Feature values:
-    logon: 77.91958137256319
-    file: 58.36453163954046
-    email: 251.78076923076924
-    device: 36.33156787169945
-    http: 20253.666666666668
-  Feature z-scores:
-    logon: 5.45
-    file: 2.06
-    email: 0.42
-    device: 1.78
-    http: 0.65
---------------------------------------------------------------------------------
-User: HRB0351
-  Rank: 8 of 1000 (Anomaly Score Percentile: 0.70%)
-  LAN Anomaly Score: 0.410
-  Feature values:
-    logon: 26.4954455989884
-    file: 117.71637931034482
-    email: 454.1920751633986
-    device: 13.309241483154528
-    http: 32313.999999999996
-  Feature z-scores:
-    logon: 0.48
-    file: 4.54
-    email: 1.93
-    device: 0.41
-    http: 1.88
---------------------------------------------------------------------------------
-User: BAL0044
-  Rank: 9 of 1000 (Anomaly Score Percentile: 0.80%)
-  LAN Anomaly Score: 0.384
-  Feature values:
-    logon: 79.2981265641393
-    file: 50.11354869816779
-    email: 277.5551282051282
-    device: 32.10025293855081
-    http: 21339.000000000004
-  Feature z-scores:
-    logon: 5.59
-    file: 1.71
-    email: 0.61
-    device: 1.53
-    http: 0.76
---------------------------------------------------------------------------------
-User: MLL0598
-  Rank: 10 of 1000 (Anomaly Score Percentile: 0.90%)
-  LAN Anomaly Score: 0.376
-  Feature values:
-    logon: 17.70765109231091
-    file: 12.674901185770752
-    email: 27.0
-    device: 79.0364906471121
-    http: 1750.9999999999998
-  Feature z-scores:
-    logon: -0.37
-    file: 0.15
-    email: -1.26
-    device: 4.34
-    http: -1.23
---------------------------------------------------------------------------------
-User: BSS0369
-  Rank: 11 of 1000 (Anomaly Score Percentile: 1.00%)
-  LAN Anomaly Score: 0.354
-  Feature values:
-    logon: 39.60112711751367
-    file: 30.87801667397981
-    email: 152.57459150326798
-    device: 68.38408163265305
-    http: 12911.416666666668
-  Feature z-scores:
-    logon: 1.75
-    file: 0.91
-    email: -0.32
-    device: 3.70
-    http: -0.10
---------------------------------------------------------------------------------
-User: JDF0593
-  Rank: 12 of 1000 (Anomaly Score Percentile: 1.10%)
-  LAN Anomaly Score: 0.330
-  Feature values:
-    logon: 30.60533175450119
-    file: 13.7112161674231
-    email: 27.0
-    device: 83.83933784451241
-    http: 1734.1666666666667
-  Feature z-scores:
-    logon: 0.88
-    file: 0.19
-    email: -1.26
-    device: 4.62
-    http: -1.24
---------------------------------------------------------------------------------
-User: AIB0948
-  Rank: 13 of 1000 (Anomaly Score Percentile: 1.20%)
-  LAN Anomaly Score: 0.329
-  Feature values:
-    logon: 30.767380622134333
-    file: 26.49039595035018
-    email: 27.0
-    device: 82.87444393599179
-    http: 1784.833333333333
-  Feature z-scores:
-    logon: 0.89
-    file: 0.73
-    email: -1.26
-    device: 4.56
-    http: -1.23
---------------------------------------------------------------------------------
-User: MOS0047
-  Rank: 14 of 1000 (Anomaly Score Percentile: 1.30%)
-  LAN Anomaly Score: 0.317
-  Feature values:
-    logon: 46.01845479082321
-    file: 29.04951485296313
-    email: 147.19230769230768
-    device: 32.24333696441539
-    http: 10686.0
-  Feature z-scores:
-    logon: 2.37
-    file: 0.83
-    email: -0.36
-    device: 1.54
-    http: -0.33
---------------------------------------------------------------------------------
-User: CCA0046
-  Rank: 15 of 1000 (Anomaly Score Percentile: 1.40%)
-  LAN Anomaly Score: 0.302
-  Feature values:
-    logon: 47.58318686020869
-    file: 28.30284280936455
-    email: 165.99450549450552
-    device: 22.50641952983725
-    http: 12058.5
-  Feature z-scores:
-    logon: 2.52
-    file: 0.80
-    email: -0.22
-    device: 0.96
-    http: -0.19
---------------------------------------------------------------------------------
-User: SBN0866
-  Rank: 16 of 1000 (Anomaly Score Percentile: 1.50%)
-  LAN Anomaly Score: 0.291
-  Feature values:
-    logon: 18.885049310655823
-    file: 121.40712396069536
-    email: 381.7120879120879
-    device: 14.59228855721393
-    http: 26715.666666666664
-  Feature z-scores:
-    logon: -0.25
-    file: 4.69
-    email: 1.39
-    device: 0.49
-    http: 1.31
---------------------------------------------------------------------------------
-User: HFB0347
-  Rank: 17 of 1000 (Anomaly Score Percentile: 1.60%)
-  LAN Anomaly Score: 0.268
-  Feature values:
-    logon: 13.755664822087189
-    file: 89.48420060331824
-    email: 58.36648351648351
-    device: 9.347407407407408
-    http: 3575.9166666666665
-  Feature z-scores:
-    logon: -0.75
-    file: 3.36
-    email: -1.03
-    device: 0.17
-    http: -1.05
---------------------------------------------------------------------------------
-User: BRS0734
-  Rank: 18 of 1000 (Anomaly Score Percentile: 1.70%)
-  LAN Anomaly Score: 0.257
-  Feature values:
-    logon: 5.955467590301831
-    file: 49.47368421052632
-    email: 105.56221988795518
-    device: 6.646153846153847
-    http: 8014.75
-  Feature z-scores:
-    logon: -1.50
-    file: 1.69
-    email: -0.68
-    device: 0.01
-    http: -0.60
---------------------------------------------------------------------------------
-User: XWD0923
-  Rank: 19 of 1000 (Anomaly Score Percentile: 1.80%)
-  LAN Anomaly Score: 0.244
-  Feature values:
-    logon: 18.85606750846878
-    file: 99.95069241857044
-    email: 189.65201465201469
-    device: 16.793835263835263
-    http: 11579.333333333332
-  Feature z-scores:
-    logon: -0.26
-    file: 3.80
-    email: -0.05
-    device: 0.62
-    http: -0.23
---------------------------------------------------------------------------------
-User: SNC0187
-  Rank: 20 of 1000 (Anomaly Score Percentile: 1.90%)
-  LAN Anomaly Score: 0.242
-  Feature values:
-    logon: 15.683607615727658
-    file: 92.83095816464235
-    email: 69.06886446886446
-    device: 9.949670420401947
-    http: 4139.333333333333
-  Feature z-scores:
-    logon: -0.56
-    file: 3.50
-    email: -0.95
-    device: 0.21
-    http: -0.99
---------------------------------------------------------------------------------
-User: KWC0004
-  Rank: 21 of 1000 (Anomaly Score Percentile: 2.00%)
-  LAN Anomaly Score: 0.230
-  Feature values:
-    logon: 17.748530096347814
-    file: 0.0
-    email: 682.4805860805861
-    device: 0.0
-    http: 48431.99999999999
-  Feature z-scores:
-    logon: -0.36
-    file: -0.38
-    email: 3.64
-    device: -0.39
-    http: 3.52
---------------------------------------------------------------------------------
-User: KBP0008
-  Rank: 22 of 1000 (Anomaly Score Percentile: 2.10%)
-  LAN Anomaly Score: 0.229
-  Feature values:
-    logon: 30.583682272605607
-    file: 0.0
-    email: 687.3571428571428
-    device: 0.0
-    http: 51868.16666666667
-  Feature z-scores:
-    logon: 0.88
-    file: -0.38
-    email: 3.68
-    device: -0.39
-    http: 3.87
---------------------------------------------------------------------------------
-User: KKW0879
-  Rank: 23 of 1000 (Anomaly Score Percentile: 2.20%)
-  LAN Anomaly Score: 0.220
-  Feature values:
-    logon: 20.762278350417887
-    file: 23.472287627581743
-    email: 357.9556444372621
-    device: 82.71466961659826
-    http: 27497.95000000001
-  Feature z-scores:
-    logon: -0.07
-    file: 0.60
-    email: 1.21
-    device: 4.56
-    http: 1.39
---------------------------------------------------------------------------------
-User: OBH0499
-  Rank: 24 of 1000 (Anomaly Score Percentile: 2.30%)
-  LAN Anomaly Score: 0.216
-  Feature values:
-    logon: 30.223121311904467
-    file: 13.562685399050364
-    email: 377.86691729323314
-    device: 84.27836570034712
-    http: 29476.450000000008
-  Feature z-scores:
-    logon: 0.84
-    file: 0.19
-    email: 1.36
-    device: 4.65
-    http: 1.59
---------------------------------------------------------------------------------
-User: DLM0051
-  Rank: 25 of 1000 (Anomaly Score Percentile: 2.40%)
-  LAN Anomaly Score: 0.216
-  Feature values:
-    logon: 27.77887170127088
-    file: 122.23455890471266
-    email: 453.9066360754828
-    device: 84.37388487998919
-    http: 34929.65000000001
-  Feature z-scores:
-    logon: 0.61
-    file: 4.73
-    email: 1.93
-    device: 4.65
-    http: 2.14
---------------------------------------------------------------------------------
-User: JFC0557
-  Rank: 26 of 1000 (Anomaly Score Percentile: 2.50%)
-  LAN Anomaly Score: 0.212
-  Feature values:
-    logon: 24.69816731770086
-    file: 40.8627090749626
-    email: 226.1600732600733
-    device: 39.88111280432032
-    http: 16505.166666666668
-  Feature z-scores:
-    logon: 0.31
-    file: 1.33
-    email: 0.23
-    device: 2.00
-    http: 0.27
---------------------------------------------------------------------------------
-User: TVS0006
-  Rank: 27 of 1000 (Anomaly Score Percentile: 2.60%)
-  LAN Anomaly Score: 0.209
-  Feature values:
-    logon: 25.67381319365273
-    file: 0.0
-    email: 675.3553113553114
-    device: 0.0
-    http: 53988.16666666667
-  Feature z-scores:
-    logon: 0.40
-    file: -0.38
-    email: 3.59
-    device: -0.39
-    http: 4.08
---------------------------------------------------------------------------------
-User: BJP0134
-  Rank: 28 of 1000 (Anomaly Score Percentile: 2.70%)
-  LAN Anomaly Score: 0.203
-  Feature values:
-    logon: 24.828544801617465
-    file: 116.2270757020757
-    email: 27.0
-    device: 83.58382809360243
-    http: 1788.8333333333337
-  Feature z-scores:
-    logon: 0.32
-    file: 4.48
-    email: -1.26
-    device: 4.61
-    http: -1.23
---------------------------------------------------------------------------------
-User: RSC0089
-  Rank: 29 of 1000 (Anomaly Score Percentile: 2.80%)
-  LAN Anomaly Score: 0.200
-  Feature values:
-    logon: 32.20224845674749
-    file: 17.83079575596817
-    email: 226.65905516052572
-    device: 76.86725170831029
-    http: 15442.083333333336
-  Feature z-scores:
-    logon: 1.03
-    file: 0.37
-    email: 0.23
-    device: 4.21
-    http: 0.16
---------------------------------------------------------------------------------
-User: ZKS0899
-  Rank: 30 of 1000 (Anomaly Score Percentile: 2.90%)
-  LAN Anomaly Score: 0.193
-  Feature values:
-    logon: 19.74036522529641
-    file: 123.5185254803676
-    email: 78.60604395604395
-    device: 85.08224708694355
-    http: 5126.999999999999
-  Feature z-scores:
-    logon: -0.17
-    file: 4.78
-    email: -0.88
-    device: 4.70
-    http: -0.89
---------------------------------------------------------------------------------
 User: AVM0947
-  Rank: 31 of 1000 (Anomaly Score Percentile: 3.00%)
-  LAN Anomaly Score: 0.191
+  Rank: 4 of 1000 (Anomaly Score Percentile: 0.30%)
+  Advanced Anomaly Score: 0.481
+  Legacy LAN Score: 0.191
   Feature values:
     logon: 19.15019413872028
     file: 110.67344932844934
@@ -500,73 +81,95 @@ User: AVM0947
     device: 4.60
     http: -1.25
 --------------------------------------------------------------------------------
-User: HPH0075
-  Rank: 32 of 1000 (Anomaly Score Percentile: 3.10%)
-  LAN Anomaly Score: 0.191
+User: BJP0134
+  Rank: 5 of 1000 (Anomaly Score Percentile: 0.40%)
+  Advanced Anomaly Score: 0.477
+  Legacy LAN Score: 0.203
   Feature values:
-    logon: 24.799357166034262
-    file: 114.94726747306794
-    email: 483.1896394455218
-    device: 76.78367867299906
-    http: 31806.250000000007
+    logon: 24.828544801617465
+    file: 116.2270757020757
+    email: 27.0
+    device: 83.58382809360243
+    http: 1788.8333333333337
   Feature z-scores:
     logon: 0.32
-    file: 4.42
-    email: 2.15
-    device: 4.20
-    http: 1.82
+    file: 4.48
+    email: -1.26
+    device: 4.61
+    http: -1.23
 --------------------------------------------------------------------------------
-User: SOB0360
-  Rank: 33 of 1000 (Anomaly Score Percentile: 3.20%)
-  LAN Anomaly Score: 0.190
+User: DLM0051
+  Rank: 6 of 1000 (Anomaly Score Percentile: 0.50%)
+  Advanced Anomaly Score: 0.458
+  Legacy LAN Score: 0.216
   Feature values:
-    logon: 46.20159861910598
-    file: 0.0
-    email: 189.8468864468865
-    device: 0.0
-    http: 13570.0
+    logon: 27.77887170127088
+    file: 122.23455890471266
+    email: 453.9066360754828
+    device: 84.37388487998919
+    http: 34929.65000000001
   Feature z-scores:
-    logon: 2.39
-    file: -0.38
-    email: -0.05
-    device: -0.39
-    http: -0.03
+    logon: 0.61
+    file: 4.73
+    email: 1.93
+    device: 4.65
+    http: 2.14
 --------------------------------------------------------------------------------
-User: CBB0365
-  Rank: 34 of 1000 (Anomaly Score Percentile: 3.30%)
-  LAN Anomaly Score: 0.185
+User: ILH0958
+  Rank: 7 of 1000 (Anomaly Score Percentile: 0.60%)
+  Advanced Anomaly Score: 0.442
+  Legacy LAN Score: 0.157
   Feature values:
-    logon: 83.9891075684523
-    file: 0.0
-    email: 277.1131868131868
-    device: 0.0
-    http: 20267.166666666664
+    logon: 30.677613701159544
+    file: 123.75502645502644
+    email: 27.0
+    device: 12.103501811281696
+    http: 1760.3333333333337
   Feature z-scores:
-    logon: 6.04
-    file: -0.38
-    email: 0.61
-    device: -0.39
-    http: 0.65
+    logon: 0.89
+    file: 4.79
+    email: -1.26
+    device: 0.34
+    http: -1.23
 --------------------------------------------------------------------------------
-User: JBD0616
-  Rank: 35 of 1000 (Anomaly Score Percentile: 3.40%)
-  LAN Anomaly Score: 0.181
+User: ZKS0899
+  Rank: 8 of 1000 (Anomaly Score Percentile: 0.70%)
+  Advanced Anomaly Score: 0.440
+  Legacy LAN Score: 0.193
   Feature values:
-    logon: 25.766099353671976
-    file: 13.081390518084069
-    email: 376.8772893772895
-    device: 86.24284526898093
-    http: 27658.83333333333
+    logon: 19.74036522529641
+    file: 123.5185254803676
+    email: 78.60604395604395
+    device: 85.08224708694355
+    http: 5126.999999999999
   Feature z-scores:
-    logon: 0.41
-    file: 0.17
-    email: 1.35
-    device: 4.77
-    http: 1.40
+    logon: -0.17
+    file: 4.78
+    email: -0.88
+    device: 4.70
+    http: -0.89
+--------------------------------------------------------------------------------
+User: MPM0220
+  Rank: 9 of 1000 (Anomaly Score Percentile: 0.80%)
+  Advanced Anomaly Score: 0.422
+  Legacy LAN Score: 0.627
+  Feature values:
+    logon: 54.25871844244759
+    file: 92.03228905597328
+    email: 174.4102564102564
+    device: 68.58304093567251
+    http: 12871.666666666668
+  Feature z-scores:
+    logon: 3.17
+    file: 3.46
+    email: -0.16
+    device: 3.71
+    http: -0.10
 --------------------------------------------------------------------------------
 User: QRM0739
-  Rank: 36 of 1000 (Anomaly Score Percentile: 3.50%)
-  LAN Anomaly Score: 0.178
+  Rank: 10 of 1000 (Anomaly Score Percentile: 0.90%)
+  Advanced Anomaly Score: 0.404
+  Legacy LAN Score: 0.178
   Feature values:
     logon: 18.725626137701845
     file: 120.71313186813188
@@ -580,153 +183,61 @@ User: QRM0739
     device: 4.74
     http: 1.41
 --------------------------------------------------------------------------------
-User: MSO0222
-  Rank: 37 of 1000 (Anomaly Score Percentile: 3.60%)
-  LAN Anomaly Score: 0.177
+User: THR0873
+  Rank: 11 of 1000 (Anomaly Score Percentile: 1.00%)
+  Advanced Anomaly Score: 0.379
+  Legacy LAN Score: 0.151
   Feature values:
-    logon: 54.7261165343001
-    file: 1.0
-    email: 197.0830280830281
-    device: 4.0
-    http: 14361.0
+    logon: 18.79599659007606
+    file: 122.7078416028416
+    email: 383.9459706959706
+    device: 76.50085547158609
+    http: 27967.83333333332
   Feature z-scores:
-    logon: 3.21
-    file: -0.34
-    email: 0.01
-    device: -0.15
-    http: 0.05
+    logon: -0.26
+    file: 4.75
+    email: 1.41
+    device: 4.18
+    http: 1.43
 --------------------------------------------------------------------------------
-User: MDM0625
-  Rank: 38 of 1000 (Anomaly Score Percentile: 3.70%)
-  LAN Anomaly Score: 0.177
+User: HPH0075
+  Rank: 12 of 1000 (Anomaly Score Percentile: 1.10%)
+  Advanced Anomaly Score: 0.375
+  Legacy LAN Score: 0.191
   Feature values:
-    logon: 28.008728933245457
-    file: 120.50813425057328
-    email: 403.9701465201465
-    device: 75.9627545844778
-    http: 27591.166666666668
+    logon: 24.799357166034262
+    file: 114.94726747306794
+    email: 483.1896394455218
+    device: 76.78367867299906
+    http: 31806.250000000007
   Feature z-scores:
-    logon: 0.63
-    file: 4.65
-    email: 1.56
-    device: 4.15
-    http: 1.39
+    logon: 0.32
+    file: 4.42
+    email: 2.15
+    device: 4.20
+    http: 1.82
 --------------------------------------------------------------------------------
-User: BAJ0654
-  Rank: 39 of 1000 (Anomaly Score Percentile: 3.80%)
-  LAN Anomaly Score: 0.176
+User: VIA0063
+  Rank: 13 of 1000 (Anomaly Score Percentile: 1.20%)
+  Advanced Anomaly Score: 0.374
+  Legacy LAN Score: 0.160
   Feature values:
-    logon: 19.82885956006624
-    file: 123.89008417508418
-    email: 76.75905760905759
-    device: 11.613155357804969
-    http: 5002.333333333333
+    logon: 17.7030520601721
+    file: 123.31637862137862
+    email: 354.565934065934
+    device: 77.510769462901
+    http: 23619.66666666667
   Feature z-scores:
-    logon: -0.16
-    file: 4.80
-    email: -0.89
-    device: 0.31
-    http: -0.90
---------------------------------------------------------------------------------
-User: VTT0385
-  Rank: 40 of 1000 (Anomaly Score Percentile: 3.90%)
-  LAN Anomaly Score: 0.176
-  Feature values:
-    logon: 19.502709826917663
-    file: 13.086905205051616
-    email: 225.16130536130527
-    device: 77.24910176244076
-    http: 16823.5
-  Feature z-scores:
-    logon: -0.19
-    file: 0.17
-    email: 0.22
-    device: 4.23
-    http: 0.30
---------------------------------------------------------------------------------
-User: BJM0111
-  Rank: 41 of 1000 (Anomaly Score Percentile: 4.00%)
-  LAN Anomaly Score: 0.175
-  Feature values:
-    logon: 20.37538090349517
-    file: 106.01434675742108
-    email: 77.21322541837245
-    device: 78.03485370896448
-    http: 5165.499999999999
-  Feature z-scores:
-    logon: -0.11
-    file: 4.05
-    email: -0.89
-    device: 4.28
-    http: -0.89
---------------------------------------------------------------------------------
-User: KSP0357
-  Rank: 42 of 1000 (Anomaly Score Percentile: 4.10%)
-  LAN Anomaly Score: 0.175
-  Feature values:
-    logon: 54.65498455331574
-    file: 0.0
-    email: 192.2142857142857
-    device: 0.0
-    http: 14330.166666666666
-  Feature z-scores:
-    logon: 3.20
-    file: -0.38
-    email: -0.03
-    device: -0.39
-    http: 0.05
---------------------------------------------------------------------------------
-User: HTH0007
-  Rank: 43 of 1000 (Anomaly Score Percentile: 4.20%)
-  LAN Anomaly Score: 0.174
-  Feature values:
-    logon: 24.653087117892177
-    file: 0.0
-    email: 692.2571428571428
-    device: 0.0
-    http: 49152.66666666667
-  Feature z-scores:
-    logon: 0.30
-    file: -0.38
-    email: 3.71
-    device: -0.39
-    http: 3.59
---------------------------------------------------------------------------------
-User: JDB0169
-  Rank: 44 of 1000 (Anomaly Score Percentile: 4.30%)
-  LAN Anomaly Score: 0.174
-  Feature values:
-    logon: 24.896219666681358
-    file: 112.39670837194932
-    email: 352.12600732600737
-    device: 78.014539745669
-    http: 28849.833333333336
-  Feature z-scores:
-    logon: 0.33
-    file: 4.32
-    email: 1.17
-    device: 4.27
-    http: 1.52
---------------------------------------------------------------------------------
-User: BTW0005
-  Rank: 45 of 1000 (Anomaly Score Percentile: 4.40%)
-  LAN Anomaly Score: 0.173
-  Feature values:
-    logon: 23.67202443511516
-    file: 0.0
-    email: 670.505128205128
-    device: 0.0
-    http: 48372.333333333336
-  Feature z-scores:
-    logon: 0.21
-    file: -0.38
-    email: 3.55
-    device: -0.39
-    http: 3.51
+    logon: -0.37
+    file: 4.77
+    email: 1.19
+    device: 4.24
+    http: 0.99
 --------------------------------------------------------------------------------
 User: CLB0774
-  Rank: 46 of 1000 (Anomaly Score Percentile: 4.50%)
-  LAN Anomaly Score: 0.172
+  Rank: 14 of 1000 (Anomaly Score Percentile: 1.30%)
+  Advanced Anomaly Score: 0.371
+  Legacy LAN Score: 0.172
   Feature values:
     logon: 21.0110903053586
     file: 104.00830724830725
@@ -740,25 +251,316 @@ User: CLB0774
     device: 4.59
     http: -0.88
 --------------------------------------------------------------------------------
-User: ESJ0670
-  Rank: 47 of 1000 (Anomaly Score Percentile: 4.60%)
-  LAN Anomaly Score: 0.172
+User: MDM0625
+  Rank: 15 of 1000 (Anomaly Score Percentile: 1.40%)
+  Advanced Anomaly Score: 0.362
+  Legacy LAN Score: 0.177
   Feature values:
-    logon: 19.487301024755286
-    file: 112.36022755022756
-    email: 258.3305791774445
-    device: 12.907733825237411
-    http: 17964.666666666664
+    logon: 28.008728933245457
+    file: 120.50813425057328
+    email: 403.9701465201465
+    device: 75.9627545844778
+    http: 27591.166666666668
   Feature z-scores:
-    logon: -0.20
-    file: 4.31
-    email: 0.47
-    device: 0.39
-    http: 0.42
+    logon: 0.63
+    file: 4.65
+    email: 1.56
+    device: 4.15
+    http: 1.39
+--------------------------------------------------------------------------------
+User: DBB0384
+  Rank: 16 of 1000 (Anomaly Score Percentile: 1.50%)
+  Advanced Anomaly Score: 0.358
+  Legacy LAN Score: 0.102
+  Feature values:
+    logon: 17.796729864059774
+    file: 122.66488955488956
+    email: 228.26849816849816
+    device: 83.00317513726351
+    http: 16622.5
+  Feature z-scores:
+    logon: -0.36
+    file: 4.74
+    email: 0.24
+    device: 4.57
+    http: 0.28
+--------------------------------------------------------------------------------
+User: BJM0111
+  Rank: 17 of 1000 (Anomaly Score Percentile: 1.60%)
+  Advanced Anomaly Score: 0.357
+  Legacy LAN Score: 0.175
+  Feature values:
+    logon: 20.37538090349517
+    file: 106.01434675742108
+    email: 77.21322541837245
+    device: 78.03485370896448
+    http: 5165.499999999999
+  Feature z-scores:
+    logon: -0.11
+    file: 4.05
+    email: -0.89
+    device: 4.28
+    http: -0.89
+--------------------------------------------------------------------------------
+User: SAA0999
+  Rank: 18 of 1000 (Anomaly Score Percentile: 1.70%)
+  Advanced Anomaly Score: 0.354
+  Legacy LAN Score: 0.108
+  Feature values:
+    logon: 25.21847886174587
+    file: 121.6377960927961
+    email: 227.9857142857143
+    device: 83.58271782522837
+    http: 14962.500000000002
+  Feature z-scores:
+    logon: 0.36
+    file: 4.70
+    email: 0.24
+    device: 4.61
+    http: 0.11
+--------------------------------------------------------------------------------
+User: CAS0507
+  Rank: 19 of 1000 (Anomaly Score Percentile: 1.80%)
+  Advanced Anomaly Score: 0.348
+  Legacy LAN Score: 0.123
+  Feature values:
+    logon: 30.715308838448376
+    file: 127.19459706959708
+    email: 78.1418081918082
+    device: 14.787181020733652
+    http: 5262.666666666667
+  Feature z-scores:
+    logon: 0.89
+    file: 4.93
+    email: -0.88
+    device: 0.50
+    http: -0.88
+--------------------------------------------------------------------------------
+User: HFB0347
+  Rank: 20 of 1000 (Anomaly Score Percentile: 1.90%)
+  Advanced Anomaly Score: 0.346
+  Legacy LAN Score: 0.268
+  Feature values:
+    logon: 13.755664822087189
+    file: 89.48420060331824
+    email: 58.36648351648351
+    device: 9.347407407407408
+    http: 3575.9166666666665
+  Feature z-scores:
+    logon: -0.75
+    file: 3.36
+    email: -1.03
+    device: 0.17
+    http: -1.05
+--------------------------------------------------------------------------------
+User: HCM0267
+  Rank: 21 of 1000 (Anomaly Score Percentile: 2.00%)
+  Advanced Anomaly Score: 0.344
+  Legacy LAN Score: 0.099
+  Feature values:
+    logon: 17.78389788573999
+    file: 118.1002046213492
+    email: 229.07252747252744
+    device: 85.64155772320885
+    http: 15999.833333333332
+  Feature z-scores:
+    logon: -0.36
+    file: 4.55
+    email: 0.25
+    device: 4.73
+    http: 0.22
+--------------------------------------------------------------------------------
+User: HSB0196
+  Rank: 22 of 1000 (Anomaly Score Percentile: 2.10%)
+  Advanced Anomaly Score: 0.344
+  Legacy LAN Score: 0.148
+  Feature values:
+    logon: 18.50536733209888
+    file: 121.81503082092183
+    email: 283.27819271596024
+    device: 79.38562444031649
+    http: 21773.40000000001
+  Feature z-scores:
+    logon: -0.29
+    file: 4.71
+    email: 0.65
+    device: 4.36
+    http: 0.80
+--------------------------------------------------------------------------------
+User: JDB0169
+  Rank: 23 of 1000 (Anomaly Score Percentile: 2.20%)
+  Advanced Anomaly Score: 0.340
+  Legacy LAN Score: 0.174
+  Feature values:
+    logon: 24.896219666681358
+    file: 112.39670837194932
+    email: 352.12600732600737
+    device: 78.014539745669
+    http: 28849.833333333336
+  Feature z-scores:
+    logon: 0.33
+    file: 4.32
+    email: 1.17
+    device: 4.27
+    http: 1.52
+--------------------------------------------------------------------------------
+User: LBH0942
+  Rank: 24 of 1000 (Anomaly Score Percentile: 2.30%)
+  Advanced Anomaly Score: 0.337
+  Legacy LAN Score: 0.100
+  Feature values:
+    logon: 24.940233712568887
+    file: 119.67203585887796
+    email: 229.40440132193228
+    device: 84.27667295990014
+    http: 17371.81666666667
+  Feature z-scores:
+    logon: 0.33
+    file: 4.62
+    email: 0.25
+    device: 4.65
+    http: 0.36
+--------------------------------------------------------------------------------
+User: PAD0773
+  Rank: 25 of 1000 (Anomaly Score Percentile: 2.40%)
+  Advanced Anomaly Score: 0.336
+  Legacy LAN Score: 0.109
+  Feature values:
+    logon: 28.68676737240131
+    file: 126.51985171261488
+    email: 79.54304029304029
+    device: 12.727804058686411
+    http: 5419.333333333333
+  Feature z-scores:
+    logon: 0.69
+    file: 4.91
+    email: -0.87
+    device: 0.37
+    http: -0.86
+--------------------------------------------------------------------------------
+User: SNC0187
+  Rank: 26 of 1000 (Anomaly Score Percentile: 2.50%)
+  Advanced Anomaly Score: 0.335
+  Legacy LAN Score: 0.242
+  Feature values:
+    logon: 15.683607615727658
+    file: 92.83095816464235
+    email: 69.06886446886446
+    device: 9.949670420401947
+    http: 4139.333333333333
+  Feature z-scores:
+    logon: -0.56
+    file: 3.50
+    email: -0.95
+    device: 0.21
+    http: -0.99
+--------------------------------------------------------------------------------
+User: DFH0188
+  Rank: 27 of 1000 (Anomaly Score Percentile: 2.60%)
+  Advanced Anomaly Score: 0.331
+  Legacy LAN Score: 0.109
+  Feature values:
+    logon: 28.81694317242521
+    file: 124.68059371184373
+    email: 77.27136197136197
+    device: 16.300183064838237
+    http: 4708.166666666667
+  Feature z-scores:
+    logon: 0.71
+    file: 4.83
+    email: -0.89
+    device: 0.59
+    http: -0.93
+--------------------------------------------------------------------------------
+User: AIP0982
+  Rank: 28 of 1000 (Anomaly Score Percentile: 2.70%)
+  Advanced Anomaly Score: 0.330
+  Legacy LAN Score: 0.163
+  Feature values:
+    logon: 25.67515481264713
+    file: 128.23743885394828
+    email: 251.3335164835165
+    device: 15.826019967952668
+    http: 16558.16666666667
+  Feature z-scores:
+    logon: 0.40
+    file: 4.98
+    email: 0.42
+    device: 0.56
+    http: 0.27
+--------------------------------------------------------------------------------
+User: BMG0917
+  Rank: 29 of 1000 (Anomaly Score Percentile: 2.80%)
+  Advanced Anomaly Score: 0.327
+  Legacy LAN Score: 0.120
+  Feature values:
+    logon: 25.480548382335236
+    file: 110.83805250305252
+    email: 227.30695970695976
+    device: 84.65085586478604
+    http: 16695.166666666664
+  Feature z-scores:
+    logon: 0.38
+    file: 4.25
+    email: 0.24
+    device: 4.67
+    http: 0.29
+--------------------------------------------------------------------------------
+User: AIB0948
+  Rank: 30 of 1000 (Anomaly Score Percentile: 2.90%)
+  Advanced Anomaly Score: 0.325
+  Legacy LAN Score: 0.329
+  Feature values:
+    logon: 30.767380622134333
+    file: 26.49039595035018
+    email: 27.0
+    device: 82.87444393599179
+    http: 1784.833333333333
+  Feature z-scores:
+    logon: 0.89
+    file: 0.73
+    email: -1.26
+    device: 4.56
+    http: -1.23
+--------------------------------------------------------------------------------
+User: JNJ0556
+  Rank: 31 of 1000 (Anomaly Score Percentile: 3.00%)
+  Advanced Anomaly Score: 0.324
+  Legacy LAN Score: 0.101
+  Feature values:
+    logon: 17.77801832198047
+    file: 114.72460317460316
+    email: 228.54688644688648
+    device: 84.66949628302291
+    http: 16387.166666666668
+  Feature z-scores:
+    logon: -0.36
+    file: 4.41
+    email: 0.24
+    device: 4.67
+    http: 0.25
+--------------------------------------------------------------------------------
+User: JDF0593
+  Rank: 32 of 1000 (Anomaly Score Percentile: 3.10%)
+  Advanced Anomaly Score: 0.323
+  Legacy LAN Score: 0.330
+  Feature values:
+    logon: 30.60533175450119
+    file: 13.7112161674231
+    email: 27.0
+    device: 83.83933784451241
+    http: 1734.1666666666667
+  Feature z-scores:
+    logon: 0.88
+    file: 0.19
+    email: -1.26
+    device: 4.62
+    http: -1.24
 --------------------------------------------------------------------------------
 User: GNS0178
-  Rank: 48 of 1000 (Anomaly Score Percentile: 4.70%)
-  LAN Anomaly Score: 0.170
+  Rank: 33 of 1000 (Anomaly Score Percentile: 3.20%)
+  Advanced Anomaly Score: 0.319
+  Legacy LAN Score: 0.170
   Feature values:
     logon: 27.26147605882965
     file: 127.39825468649
@@ -772,35 +574,292 @@ User: GNS0178
     device: 0.21
     http: 0.15
 --------------------------------------------------------------------------------
-User: MSH0040
-  Rank: 49 of 1000 (Anomaly Score Percentile: 4.80%)
-  LAN Anomaly Score: 0.167
+User: WIF0691
+  Rank: 34 of 1000 (Anomaly Score Percentile: 3.30%)
+  Advanced Anomaly Score: 0.317
+  Legacy LAN Score: 0.118
   Feature values:
-    logon: 56.84850751516348
-    file: 0.0
-    email: 208.73351648351647
-    device: 0.0
-    http: 15237.833333333334
+    logon: 24.90235342392595
+    file: 118.63495115995116
+    email: 228.46813186813185
+    device: 77.1362328902911
+    http: 17104.500000000004
   Feature z-scores:
-    logon: 3.42
-    file: -0.38
-    email: 0.10
-    device: -0.39
-    http: 0.14
+    logon: 0.33
+    file: 4.58
+    email: 0.24
+    device: 4.22
+    http: 0.33
 --------------------------------------------------------------------------------
-User: LCB0664
-  Rank: 50 of 1000 (Anomaly Score Percentile: 4.90%)
-  LAN Anomaly Score: 0.167
+User: MOH0273
+  Rank: 35 of 1000 (Anomaly Score Percentile: 3.40%)
+  Advanced Anomaly Score: 0.313
+  Legacy LAN Score: 0.125
   Feature values:
-    logon: 28.21887584114843
-    file: 14.03316574493045
-    email: 357.93479853479846
-    device: 83.97047103277949
-    http: 23168.333333333336
+    logon: 17.722328515423854
+    file: 115.49358908587725
+    email: 225.67822284784364
+    device: 75.90083613534941
+    http: 16457.949999999997
   Feature z-scores:
-    logon: 0.65
-    file: 0.21
-    email: 1.21
-    device: 4.63
-    http: 0.94
+    logon: -0.37
+    file: 4.44
+    email: 0.22
+    device: 4.15
+    http: 0.26
+--------------------------------------------------------------------------------
+User: BAJ0654
+  Rank: 36 of 1000 (Anomaly Score Percentile: 3.50%)
+  Advanced Anomaly Score: 0.312
+  Legacy LAN Score: 0.176
+  Feature values:
+    logon: 19.82885956006624
+    file: 123.89008417508418
+    email: 76.75905760905759
+    device: 11.613155357804969
+    http: 5002.333333333333
+  Feature z-scores:
+    logon: -0.16
+    file: 4.80
+    email: -0.89
+    device: 0.31
+    http: -0.90
+--------------------------------------------------------------------------------
+User: HRB0351
+  Rank: 37 of 1000 (Anomaly Score Percentile: 3.60%)
+  Advanced Anomaly Score: 0.311
+  Legacy LAN Score: 0.410
+  Feature values:
+    logon: 26.4954455989884
+    file: 117.71637931034482
+    email: 454.1920751633986
+    device: 13.309241483154528
+    http: 32313.999999999996
+  Feature z-scores:
+    logon: 0.48
+    file: 4.54
+    email: 1.93
+    device: 0.41
+    http: 1.88
+--------------------------------------------------------------------------------
+User: XWD0923
+  Rank: 38 of 1000 (Anomaly Score Percentile: 3.70%)
+  Advanced Anomaly Score: 0.307
+  Legacy LAN Score: 0.244
+  Feature values:
+    logon: 18.85606750846878
+    file: 99.95069241857044
+    email: 189.65201465201469
+    device: 16.793835263835263
+    http: 11579.333333333332
+  Feature z-scores:
+    logon: -0.26
+    file: 3.80
+    email: -0.05
+    device: 0.62
+    http: -0.23
+--------------------------------------------------------------------------------
+User: MLL0598
+  Rank: 39 of 1000 (Anomaly Score Percentile: 3.80%)
+  Advanced Anomaly Score: 0.293
+  Legacy LAN Score: 0.376
+  Feature values:
+    logon: 17.70765109231091
+    file: 12.674901185770752
+    email: 27.0
+    device: 79.0364906471121
+    http: 1750.9999999999998
+  Feature z-scores:
+    logon: -0.37
+    file: 0.15
+    email: -1.26
+    device: 4.34
+    http: -1.23
+--------------------------------------------------------------------------------
+User: SBN0866
+  Rank: 40 of 1000 (Anomaly Score Percentile: 3.90%)
+  Advanced Anomaly Score: 0.293
+  Legacy LAN Score: 0.291
+  Feature values:
+    logon: 18.885049310655823
+    file: 121.40712396069536
+    email: 381.7120879120879
+    device: 14.59228855721393
+    http: 26715.666666666664
+  Feature z-scores:
+    logon: -0.25
+    file: 4.69
+    email: 1.39
+    device: 0.49
+    http: 1.31
+--------------------------------------------------------------------------------
+User: PNH0761
+  Rank: 41 of 1000 (Anomaly Score Percentile: 4.00%)
+  Advanced Anomaly Score: 0.292
+  Legacy LAN Score: 0.157
+  Feature values:
+    logon: 21.74306867993869
+    file: 117.35250582750582
+    email: 77.08223443223443
+    device: 14.72901185770751
+    http: 4879.333333333333
+  Feature z-scores:
+    logon: 0.02
+    file: 4.52
+    email: -0.89
+    device: 0.49
+    http: -0.92
+--------------------------------------------------------------------------------
+User: OBH0499
+  Rank: 42 of 1000 (Anomaly Score Percentile: 4.10%)
+  Advanced Anomaly Score: 0.282
+  Legacy LAN Score: 0.216
+  Feature values:
+    logon: 30.223121311904467
+    file: 13.562685399050364
+    email: 377.86691729323314
+    device: 84.27836570034712
+    http: 29476.450000000008
+  Feature z-scores:
+    logon: 0.84
+    file: 0.19
+    email: 1.36
+    device: 4.65
+    http: 1.59
+--------------------------------------------------------------------------------
+User: JBD0616
+  Rank: 43 of 1000 (Anomaly Score Percentile: 4.20%)
+  Advanced Anomaly Score: 0.277
+  Legacy LAN Score: 0.181
+  Feature values:
+    logon: 25.766099353671976
+    file: 13.081390518084069
+    email: 376.8772893772895
+    device: 86.24284526898093
+    http: 27658.83333333333
+  Feature z-scores:
+    logon: 0.41
+    file: 0.17
+    email: 1.35
+    device: 4.77
+    http: 1.40
+--------------------------------------------------------------------------------
+User: MSS0001
+  Rank: 44 of 1000 (Anomaly Score Percentile: 4.30%)
+  Advanced Anomaly Score: 0.272
+  Legacy LAN Score: 0.605
+  Feature values:
+    logon: 24.859160432416697
+    file: 0.0
+    email: 903.7549450549452
+    device: 0.0
+    http: 74846.0
+  Feature z-scores:
+    logon: 0.32
+    file: -0.38
+    email: 5.30
+    device: -0.39
+    http: 6.20
+--------------------------------------------------------------------------------
+User: BSS0369
+  Rank: 45 of 1000 (Anomaly Score Percentile: 4.40%)
+  Advanced Anomaly Score: 0.269
+  Legacy LAN Score: 0.354
+  Feature values:
+    logon: 39.60112711751367
+    file: 30.87801667397981
+    email: 152.57459150326798
+    device: 68.38408163265305
+    http: 12911.416666666668
+  Feature z-scores:
+    logon: 1.75
+    file: 0.91
+    email: -0.32
+    device: 3.70
+    http: -0.10
+--------------------------------------------------------------------------------
+User: EIS0041
+  Rank: 46 of 1000 (Anomaly Score Percentile: 4.50%)
+  Advanced Anomaly Score: 0.267
+  Legacy LAN Score: 0.423
+  Feature values:
+    logon: 77.91958137256319
+    file: 58.36453163954046
+    email: 251.78076923076924
+    device: 36.33156787169945
+    http: 20253.666666666668
+  Feature z-scores:
+    logon: 5.45
+    file: 2.06
+    email: 0.42
+    device: 1.78
+    http: 0.65
+--------------------------------------------------------------------------------
+User: ESJ0670
+  Rank: 47 of 1000 (Anomaly Score Percentile: 4.60%)
+  Advanced Anomaly Score: 0.265
+  Legacy LAN Score: 0.172
+  Feature values:
+    logon: 19.487301024755286
+    file: 112.36022755022756
+    email: 258.3305791774445
+    device: 12.907733825237411
+    http: 17964.666666666664
+  Feature z-scores:
+    logon: -0.20
+    file: 4.31
+    email: 0.47
+    device: 0.39
+    http: 0.42
+--------------------------------------------------------------------------------
+User: ESH0283
+  Rank: 48 of 1000 (Anomaly Score Percentile: 4.70%)
+  Advanced Anomaly Score: 0.263
+  Legacy LAN Score: 0.154
+  Feature values:
+    logon: 19.6058485107797
+    file: 121.8292748917749
+    email: 232.39597069597068
+    device: 12.206998556998558
+    http: 16570.166666666668
+  Feature z-scores:
+    logon: -0.18
+    file: 4.71
+    email: 0.27
+    device: 0.34
+    http: 0.27
+--------------------------------------------------------------------------------
+User: HCS0003
+  Rank: 49 of 1000 (Anomaly Score Percentile: 4.80%)
+  Advanced Anomaly Score: 0.262
+  Legacy LAN Score: 0.532
+  Feature values:
+    logon: 17.799137383797202
+    file: 44.99262483016402
+    email: 682.0886446886448
+    device: 28.41063639542832
+    http: 48643.5
+  Feature z-scores:
+    logon: -0.36
+    file: 1.50
+    email: 3.64
+    device: 1.31
+    http: 3.54
+--------------------------------------------------------------------------------
+User: TDS0984
+  Rank: 50 of 1000 (Anomaly Score Percentile: 4.90%)
+  Advanced Anomaly Score: 0.257
+  Legacy LAN Score: 0.153
+  Feature values:
+    logon: 27.356039593510136
+    file: 118.77430555555556
+    email: 234.6480508870215
+    device: 12.718192151695987
+    http: 16575.816666666666
+  Feature z-scores:
+    logon: 0.56
+    file: 4.58
+    email: 0.29
+    device: 0.37
+    http: 0.27
 --------------------------------------------------------------------------------
