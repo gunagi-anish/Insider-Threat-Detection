@@ -221,6 +221,10 @@ def index():
         return redirect(url_for('login'))
     return render_template('index.html', username=session.get('username'))
 
+@app.route('/healthz')
+def healthz():
+    return jsonify({'ok': True}), 200
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
